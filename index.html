@@ -207,9 +207,9 @@
 <!-- password gate -->
 <div class="mask" id="pwMask">
   <div class="pw-box">
-    <h3>🔐 上传验证</h3>
-    <p>登记物品需要输入共享密码</p>
-    <input id="pwInput" type="password" placeholder="请输入上传密码" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px" />
+    <h3>🔐 管理员登记</h3>
+    <p>请输入你的 GitHub 访问令牌（仅保存在本机浏览器，不会公开）</p>
+    <input id="pwInput" type="text" placeholder="粘贴你的 GitHub 访问令牌" style="width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:14px" />
     <button class="btn btn-primary" style="width:100%;padding:12px;margin-top:12px" onclick="checkPw()">进入登记</button>
   </div>
 </div>
@@ -225,7 +225,7 @@ const CONFIG = {
   DATA_FILE: "data.json",      // 数据文件名（保持默认）
   IMAGE_DIR: "images",         // 图片存放目录
   UPLOAD_PASSWORD: "123456",   // ← 改成你的共享上传密码，发给同事让他们填这个
-  GITHUB_TOKEN: "",            // ← 填入有该仓库「内容读写」权限的 Token（见说明）
+  GITHUB_TOKEN: "",            // ← 留空：Token 由管理员在「登记」时输入，不写死以免触发密钥防护
   APP_TITLE: "呆滞物品陈列台"
 };
 /* ============================================================== */
@@ -251,6 +251,7 @@ let DATA = { items: [] };
 let activeCat = "全部";
 let searchKw = "";
 let unlocked = false;
+let adminToken = localStorage.getItem('pmj_admin_token') || "";
 let pendingImgs = []; // {file}
 
 /* ---------- 工具 ---------- */
@@ -279,7 +280,7 @@ async function loadData(){
 function b64(str){ return btoa(unescape(encodeURIComponent(str))); }
 async function getSha(path){
   const api=`https://api.github.com/repos/${R.owner}/${R.repo}/contents/${path}?ref=${R.branch}`;
-  const r=await fetch(api,{headers:{Authorization:'token '+CONFIG.GITHUB_TOKEN}});
+  const r=await fetch(api,{headers:{Authorization:'token '+adminToken}});
   if(r.status===404) return null;
   if(!r.ok) throw new Error('读取文件信息失败');
   const j=await r.json(); return j.sha;
@@ -290,7 +291,7 @@ async function putFile(path, contentB64, message, sha){
   if(sha) body.sha=sha;
   const r=await fetch(api,{
     method:'PUT',
-    headers:{'Authorization':'token '+CONFIG.GITHUB_TOKEN,'Content-Type':'application/json'},
+    headers:{'Authorization':'token '+adminToken,'Content-Type':'application/json'},
     body:JSON.stringify(body)
   });
   if(!r.ok){ const t=await r.text(); throw new Error('保存失败：'+t.slice(0,120)); }
@@ -394,15 +395,16 @@ function askUpload(){
   setTimeout(()=>document.getElementById('pwInput').focus(),100);
 }
 function checkPw(){
-  const v=document.getElementById('pwInput').value;
-  if(v===CONFIG.UPLOAD_PASSWORD){
-    unlocked=true; sessionStorage.setItem('unlocked','1');
-    document.getElementById('pwMask').classList.remove('show');
-    document.getElementById('pwInput').value='';
-    toast('验证通过，可以登记');
-    renderActions();
-    openUpload();
-  }else{ toast('密码错误'); }
+  const v=document.getElementById('pwInput').value.trim();
+  if(!v){ toast('请输入管理员 Token'); return; }
+  adminToken=v;
+  localStorage.setItem('pmj_admin_token', v);
+  unlocked=true; sessionStorage.setItem('unlocked','1');
+  document.getElementById('pwMask').classList.remove('show');
+  document.getElementById('pwInput').value='';
+  toast('管理员已登录，可以登记');
+  renderActions();
+  openUpload();
 }
 function lock(){unlocked=false;sessionStorage.removeItem('unlocked');renderActions();toast('已退出登记模式');}
 
@@ -427,7 +429,7 @@ async function submitItem(){
   const cat=document.getElementById('f_cat').value.trim();
   if(!name){toast('请填写物品名称');return;}
   if(!cat){toast('请填写分类');return;}
-  if(!CONFIG.GITHUB_TOKEN){toast('未配置 Token，无法保存（见说明）');return;}
+  if(!adminToken){toast('请先在「登记」处输入管理员 Token');return;}
 
   const btn=event.target; const old=btn.textContent; btn.disabled=true; btn.textContent='上传中…';
   try{
