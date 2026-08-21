@@ -186,6 +186,16 @@
           </select>
         </div>
       </div>
+      <div class="twocol">
+        <div class="field">
+          <label>重量</label>
+          <input id="f_weight" inputmode="decimal" placeholder="如 850 kg" />
+        </div>
+        <div class="field">
+          <label>架型</label>
+          <input id="f_shelf" placeholder="如 三层重型货架 / 单排轻型" />
+        </div>
+      </div>
       <div class="field">
         <label>责任人</label>
         <input id="f_owner" placeholder="负责此物品的人" />
@@ -343,7 +353,7 @@ function filtered(){
   return DATA.items.filter(it=>{
     if(activeCat!=="全部" && it.category!==activeCat) return false;
     if(searchKw){
-      const hay=[it.name,it.location,it.owner,it.description,it.category].join(' ').toLowerCase();
+      const hay=[it.name,it.location,it.owner,it.description,it.category,it.weight,it.shelf].join(' ').toLowerCase();
       if(!hay.includes(searchKw.toLowerCase())) return false;
     }
     return true;
@@ -446,6 +456,8 @@ async function submitItem(){
       location:document.getElementById('f_loc').value.trim(),
       status:document.getElementById('f_status').value,
       owner:document.getElementById('f_owner').value.trim(),
+      weight:document.getElementById('f_weight').value.trim(),
+      shelf:document.getElementById('f_shelf').value.trim(),
       description:document.getElementById('f_desc').value.trim(),
       images:imgs,
       createdAt:Date.now()
@@ -457,7 +469,7 @@ async function submitItem(){
     await putFile(CONFIG.DATA_FILE, b64(JSON.stringify(newData,null,2)), `add item ${name}`, sha);
     DATA=newData;
     // reset
-    ['f_name','f_cat','f_qty','f_loc','f_owner','f_desc'].forEach(id=>document.getElementById(id).value='');
+    ['f_name','f_cat','f_qty','f_loc','f_weight','f_shelf','f_owner','f_desc'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('f_status').value='待处理';
     pendingImgs=[]; renderPick();
     closeUpload(); render();
@@ -485,6 +497,8 @@ function openDetail(id){
       <div style="margin:4px 0 10px"><span class="badge ${st}">${esc(it.status||'待处理')}</span> <span class="badge b-ycz">${esc(it.category||'')}</span></div>
       ${row('数量',it.qty)}
       ${row('存放位置',it.location)}
+      ${row('重量',it.weight)}
+      ${row('架型',it.shelf)}
       ${row('责任人',it.owner)}
       ${row('登记时间',it.createdAt?new Date(it.createdAt).toLocaleString('zh-CN'):'')}
       ${row('情况说明',it.description)}
