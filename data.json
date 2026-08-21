@@ -1,3 +1,18 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "i1787275900404v8vd",
+      "name": "海湾液压支架",
+      "category": "液压支架",
+      "qty": "12台",
+      "location": "北广场",
+      "status": "待处理",
+      "owner": "测试11",
+      "description": "",
+      "images": [
+        "images/1787275897821_hcsbo.jpg"
+      ],
+      "createdAt": 1787275900404
+    }
+  ]
 }
