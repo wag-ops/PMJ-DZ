@@ -62,6 +62,8 @@
   .card .thumb{aspect-ratio:1/1;background:#eef1f6;position:relative}
   .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .card .thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:30px}
+  .card .card-del{position:absolute;top:6px;right:6px;width:28px;height:28px;border:none;border-radius:8px;background:rgba(17,24,39,.62);color:#fff;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3}
+  .card .card-del:hover{background:rgba(220,38,38,.9)}
   .card .body{padding:9px 10px 11px}
   .card .nm{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .card .meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;gap:6px}
@@ -371,7 +373,7 @@ function render(){
       : `<div class="ph">📦</div>`;
     const st=STATUS_CLASS[it.status]||'b-dcl';
     return `<div class="card" onclick="openDetail('${it.id}')">
-      <div class="thumb">${img}</div>
+      <div class="thumb">${img}${unlocked?`<button class="card-del" title="删除" onclick="event.stopPropagation();delItem('${it.id}')">🗑</button>`:''}</div>
       <div class="body">
         <div class="nm">${esc(it.name)}</div>
         <div class="meta"><span class="badge ${st}">${esc(it.status||'待处理')}</span><span>${esc(it.category||'')}</span></div>
@@ -414,9 +416,10 @@ function checkPw(){
   document.getElementById('pwInput').value='';
   toast('管理员已登录，可以登记');
   renderActions();
+  render();
   openUpload();
 }
-function lock(){unlocked=false;sessionStorage.removeItem('unlocked');renderActions();toast('已退出登记模式');}
+function lock(){unlocked=false;sessionStorage.removeItem('unlocked');renderActions();render();toast('已退出登记模式');}
 
 /* ---------- 上传表单 ---------- */
 function openUpload(){
