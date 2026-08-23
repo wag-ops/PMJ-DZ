@@ -75,6 +75,20 @@
         "images/1787450753662_z6ro9.jpg"
       ],
       "createdAt": 1787450756604
+    },
+    {
+      "id": "i1787450984169eybv",
+      "name": "新玉机巷超前",
+      "category": "液压支架",
+      "qty": "1台",
+      "location": "总装北二东",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZQ3*4800/19/30",
+      "description": "",
+      "images": [],
+      "createdAt": 1787450984170
     }
   ]
 }
