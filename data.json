@@ -66,6 +66,29 @@
         "images/1787450549705_iox12.jpg"
       ],
       "createdAt": 1787450553066
+    },
+    {
+      "id": "i17874507566044r1d",
+      "name": "新玉主机",
+      "category": "液压支架",
+      "qty": "33台",
+      "location": "总装北二东",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZF2600/15/24",
+      "description": "",
+      "images": [
+        "images/1787450733581_0x5v2.jpg",
+        "images/1787450736789_pi0d1.jpg",
+        "images/1787450739580_m9cm8.jpg",
+        "images/1787450742496_vqxf2.jpg",
+        "images/1787450745224_na80z.jpg",
+        "images/1787450748039_pkr6u.jpg",
+        "images/1787450750936_f6qqh.jpg",
+        "images/1787450753662_z6ro9.jpg"
+      ],
+      "createdAt": 1787450756604
     }
   ]
 }
