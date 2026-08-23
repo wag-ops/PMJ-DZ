@@ -44,6 +44,28 @@
       "description": "",
       "images": [],
       "createdAt": 1787450454728
+    },
+    {
+      "id": "i1787450553066gdhm",
+      "name": "新玉过渡",
+      "category": "液压支架",
+      "qty": "6台",
+      "location": "北货场",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZFG3800/17/27",
+      "description": "",
+      "images": [
+        "images/1787450533313_17xp3.jpg",
+        "images/1787450536477_2rp07.jpg",
+        "images/1787450538931_mx84a.jpg",
+        "images/1787450541842_4x2wk.jpg",
+        "images/1787450544614_q5xvs.jpg",
+        "images/1787450547126_yhpnt.jpg",
+        "images/1787450549705_iox12.jpg"
+      ],
+      "createdAt": 1787450553066
     }
   ]
 }
