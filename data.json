@@ -110,6 +110,23 @@
         "images/1787451163498_addmf.jpg"
       ],
       "createdAt": 1787451166045
+    },
+    {
+      "id": "i178745147094751xz",
+      "name": "羊头岭过渡",
+      "category": "液压支架",
+      "qty": "2台",
+      "location": "北货场",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZYG4000/12.5/28",
+      "description": "",
+      "images": [
+        "images/1787451465447_pv4jy.jpg",
+        "images/1787451468349_cwv3b.jpg"
+      ],
+      "createdAt": 1787451470947
     }
   ]
 }
