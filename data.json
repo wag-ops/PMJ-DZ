@@ -127,6 +127,28 @@
         "images/1787451468349_cwv3b.jpg"
       ],
       "createdAt": 1787451470947
+    },
+    {
+      "id": "i1787451636800so3b",
+      "name": "ZFY4800/16/30",
+      "category": "液压支架",
+      "qty": "7台",
+      "location": "北货场",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZFY4800/16/30",
+      "description": "",
+      "images": [
+        "images/1787451619210_94c10.jpg",
+        "images/1787451621796_jzyb1.jpg",
+        "images/1787451624062_rh6md.jpg",
+        "images/1787451626899_e3ddo.jpg",
+        "images/1787451629424_bhjxo.jpg",
+        "images/1787451631935_p83i1.jpg",
+        "images/1787451634308_b83jo.jpg"
+      ],
+      "createdAt": 1787451636801
     }
   ]
 }
