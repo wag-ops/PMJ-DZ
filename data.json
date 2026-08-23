@@ -1,3 +1,21 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "i1787450325686qyn3",
+      "name": "刨煤机样机",
+      "category": "液压支架",
+      "qty": "2台",
+      "location": "北货场",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZY2200/06/14",
+      "description": "",
+      "images": [
+        "images/1787450320594_0lw8t.jpg",
+        "images/1787450323453_4btyb.jpg"
+      ],
+      "createdAt": 1787450325686
+    }
+  ]
 }
