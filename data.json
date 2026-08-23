@@ -89,6 +89,27 @@
       "description": "",
       "images": [],
       "createdAt": 1787450984170
+    },
+    {
+      "id": "i1787451166045tz5b",
+      "name": "羊头岭端头",
+      "category": "液压支架",
+      "qty": "4台",
+      "location": "北货场",
+      "status": "待处理",
+      "owner": "",
+      "weight": "",
+      "shelf": "ZYT4000/12.5/28",
+      "description": "",
+      "images": [
+        "images/1787451149645_7g9vw.jpg",
+        "images/1787451152700_yueab.jpg",
+        "images/1787451155262_v6ox9.jpg",
+        "images/1787451157907_lln6v.jpg",
+        "images/1787451160435_phzj3.jpg",
+        "images/1787451163498_addmf.jpg"
+      ],
+      "createdAt": 1787451166045
     }
   ]
 }
